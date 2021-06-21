@@ -1,0 +1,80 @@
+Create an NGINX Pod
+
+kubectl run nginx --image=nginx
+
+
+
+Generate POD Manifest YAML file (-o yaml). Don't create it(--dry-run)
+
+kubectl run nginx --image=nginx --dry-run=client -o yaml
+
+
+
+Create a deployment
+
+kubectl create deployment --image=nginx nginx
+
+
+
+Generate Deployment YAML file (-o yaml). Don't create it(--dry-run)
+
+kubectl create deployment --image=nginx nginx --dry-run=client -o yaml
+
+
+
+Generate Deployment YAML file (-o yaml). Don't create it(--dry-run) with 4 Replicas (--replicas=4)
+
+kubectl create deployment --image=nginx nginx --dry-run=client -o yaml > nginx-deployment.yaml
+
+Save it to a file, make necessary changes to the file (for example, adding more replicas) and then create the deployment.
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Solutions for Practice Test - Imperative Commands
+
+Run the command kubectl run nginx-pod --image=nginx:alpine.
+
+Details
+$ kubectl run nginx-pod --image=nginx:alpine
+Run the command kubectl run redis --image=redis:alpine -l tier=db.
+
+Details
+$ kubectl run redis --image=redis:alpine -l tier=db
+Run the command kubectl expose pod redis --port=6379 --name redis-service.
+
+Details
+$ kubectl expose pod redis --port=6379 --name redis-service
+Run the command kubectl create deployment webapp --image=kodekloud/webapp-color. Then scale the webapp to 3 using command kubectl scale deployment/webapp --replicas=3.
+
+Details
+$ kubectl create deployment webapp --image=kodekloud/webapp-color
+$ kubectl scale deployment/webapp --replicas=3
+Run the command kubectl run custom-nginx --image=nginx --port=8080.
+
+Details
+$ kubectl run custom-nginx --image=nginx --port=8080
+Run the command kubectl create ns dev-ns.
+
+Details
+$ kubectl create ns dev-ns
+Run the command to create a deployment.
+
+Details
+Step 1: Create the deployment YAML file
+$ kubectl create deployment redis-deploy --image redis --namespace=dev-ns --dry-run=client -o yaml > deploy.yaml
+$ kubectl create -f deploy.yaml
+
+Step 2: Edit the YAML file and add update the replicas to 2.
+
+Step 3: Run kubectl apply -f deploy.yaml to create the deployment in the dev-ns namespace.
+$ kubectl apply -f deploy.yaml
+
+You can also use kubectl scale deployment or kubectl edit deployment to change the number of replicas once the object has been created.
+$ kubectl edit deployment redis-deploy
+$ kubectl scale deployment/redis-deploy --replicas=2 --namespace=dev-ns
+
+In v1.19, kubectl create deployment supports "--replicas" flag to increase the count number.
+$ kubectl create deployment redis-deploy --image=redis --namespace=dev-ns --replicas=2
+First create a YAML file for both the pod and service like this: kubectl run httpd --image=httpd:alpine --port=80 --expose.
+
+Details
+$ kubectl run httpd --image=httpd:alpine --port=80 --expose

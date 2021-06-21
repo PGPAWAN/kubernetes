@@ -1,0 +1,55 @@
+root@controlplane:~# git clone https://github.com/kodekloudhub/kubernetes-metrics-server.git
+Cloning into 'kubernetes-metrics-server'...
+remote: Enumerating objects: 24, done.
+remote: Counting objects: 100% (12/12), done.
+remote: Compressing objects: 100% (12/12), done.
+remote: Total 24 (delta 4), reused 0 (delta 0), pack-reused 12
+Unpacking objects: 100% (24/24), done.
+root@controlplane:~#
+root@controlplane:~#
+root@controlplane:~# ls
+kubernetes-metrics-server  sample.yaml
+root@controlplane:~#
+root@controlplane:~#
+root@controlplane:~#
+root@controlplane:~# cd kubernetes-metrics-server/
+root@controlplane:~/kubernetes-metrics-server# ls
+README.md                       auth-delegator.yaml  metrics-apiservice.yaml         metrics-server-service.yaml
+aggregated-metrics-reader.yaml  auth-reader.yaml     metrics-server-deployment.yaml  resource-reader.yaml
+root@controlplane:~/kubernetes-metrics-server#
+root@controlplane:~/kubernetes-metrics-server#
+root@controlplane:~/kubernetes-metrics-server#  kubectl create -f .
+clusterrole.rbac.authorization.k8s.io/system:aggregated-metrics-reader created
+clusterrolebinding.rbac.authorization.k8s.io/metrics-server:system:auth-delegator created
+rolebinding.rbac.authorization.k8s.io/metrics-server-auth-reader created
+apiservice.apiregistration.k8s.io/v1beta1.metrics.k8s.io created
+serviceaccount/metrics-server created
+deployment.apps/metrics-server created
+service/metrics-server created
+clusterrole.rbac.authorization.k8s.io/system:metrics-server created
+clusterrolebinding.rbac.authorization.k8s.io/system:metrics-server created
+root@controlplane:~/kubernetes-metrics-server#
+root@controlplane:~/kubernetes-metrics-server#
+root@controlplane:~/kubernetes-metrics-server#
+root@controlplane:~/kubernetes-metrics-server#
+Clone the metric server from github repo
+
+$ git clone https://github.com/kubernetes-incubator/metrics-server.git
+Deploy the metric server
+
+$ kubectl create -f metric-server/deploy/1.8+/
+View the cluster performance
+
+$ kubectl top node
+View performance metrics of pod
+
+$ kubectl top pod
+
+
+To view the logs
+
+$ kubectl logs -f event-simulator-pod
+If there are multiple containers in a pod then you must specify the name of the container explicitly in the command.
+
+$ kubectl logs -f <pod-name> <container-name>
+$ kubectl logs -f even-simulator-pod event-simulator

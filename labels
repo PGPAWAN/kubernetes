@@ -1,0 +1,41 @@
+root@controlplane:~# kubectl get pods --show-labels
+NAME          READY   STATUS    RESTARTS   AGE     LABELS
+app-1-56mxv   1/1     Running   0          4m32s   bu=finance,env=dev,tier=frontend
+app-1-lfs5f   1/1     Running   0          4m32s   bu=finance,env=dev,tier=frontend
+app-1-ts7sq   1/1     Running   0          4m32s   bu=finance,env=dev,tier=frontend
+app-1-zzxdf   1/1     Running   0          4m31s   bu=finance,env=prod,tier=frontend
+app-2-x9825   1/1     Running   0          4m32s   env=prod,tier=frontend
+auth          1/1     Running   0          4m32s   bu=finance,env=prod
+db-1-2qgj5    1/1     Running   0          4m32s   env=dev,tier=db
+db-1-4dkfk    1/1     Running   0          4m32s   env=dev,tier=db
+db-1-92752    1/1     Running   0          4m32s   env=dev,tier=db
+db-1-s2v26    1/1     Running   0          4m32s   env=dev,tier=db
+db-2-v67cg    1/1     Running   0          4m32s   bu=finance,env=prod,tier=db
+root@controlplane:~#
+
+
+
+how many pods are in dev environment
+ans: kubectl get pods -l env=development --no-headers | wc -l
+
+
+how many pods in finance business unit?
+ans: kubectl get pods -l bu=finance --no-headers | wc -l
+
+
+how many objects in prod environment including pods, replicasets..etcs?
+ans: kubectl get all -l env=prod --no-headers | wc -l
+
+
+
+
+
+
+
+
+
+
+kubectl get pods --show-labels
+
+
+kubectl get pods -l env=development --no-headers

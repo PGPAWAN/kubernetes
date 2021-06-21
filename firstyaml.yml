@@ -1,0 +1,33 @@
+# create pod without creating a yaml file or directly pull the image from docker github
+#kubectl run nginx --image=nginx
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# Kubectl create -f firstyaml.yaml
+# kubectl get pods
+#++++++++++++++++++++++++++++++++++++++++++++++++++++
+# kubectl logs myfirstpod
+# kubectl describe pod myfirstpod
+#+++++++++++++++++++++++++++++++++++++++++++++++++++
+# kubectl get pods -o wide
+# kubectl delete pod myfirstpod
+# make any changes to the pods
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# Fix the image name in the redis.yaml file and apply the changes.
+#
+# $ kubectl apply -f firstyaml.yml
+#
+# Direct edit in the running pod.
+#
+# $ kubectl edit pod myfirstpod
+#+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: myfirstpod
+  labels:
+    apps: myapp
+    type: front-end
+spec:
+  containers:
+    - name: nginx-container
+      image: nginx

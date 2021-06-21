@@ -1,0 +1,29 @@
+#  kubectl create -f second_replicaset.yml // create the replica sets
+#  kubectl get replicasets  // list  the replica set
+# ######## Scaling of replica sets #################
+# kubectl apply -f second_replicaset_new.yaml  //using create a new file
+#  kubectl scale --replicas=6 -f second_replicaset.yaml
+# kubectl scale --replicas=6 replicaset myappreplicaset
+#  kubectl explain replicaset|grep VERSION // check in parameter
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: myappreplicaset
+  labels:
+    app: myapp
+    type: front-end
+spec:
+  template:
+    metadata:
+      name: myfirstpod
+      labels:
+        apps: myapp
+        type: front-end
+    spec:
+      containers:
+      - name: nginx-container
+        image: nginx
+  replicas: 3
+  selector:
+    matchLabels:
+      type: front-end
